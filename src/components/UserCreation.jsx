@@ -35,8 +35,6 @@ class UserCreation extends React.Component {
   }
 
   render() {
-    console.log('handleDisableSubmit', this.handleDisableSubmit());
-
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
