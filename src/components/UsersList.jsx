@@ -4,9 +4,10 @@ import moment from 'moment';
 
 import {dateFormat} from '../const';
 
-const UsersList = ({users, onDeleteClick}) => {
+const UsersList = ({users, onDeleteClick, onEditClick}) => {
   const renderUser = user => {
     const handleDeleteClick = () => onDeleteClick(user.id);
+    const handleEditClick = () => onEditClick(user);
 
     return (
       <tr key={user.id}>
@@ -15,6 +16,7 @@ const UsersList = ({users, onDeleteClick}) => {
         <td>{moment(user.dob, dateFormat).format('DD/MM/YYYY')}</td>
         <td>{user.location}</td>
         <td>
+          <button onClick={handleEditClick}>Edit</button>
           <button onClick={handleDeleteClick}>Delete</button>
         </td>
       </tr>
@@ -40,6 +42,7 @@ const UsersList = ({users, onDeleteClick}) => {
 UsersList.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),
   onDeleteClick: PropTypes.func.isRequired,
+  onEditClick: PropTypes.func.isRequired,
 };
 
 UsersList.defaultProps = {
