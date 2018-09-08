@@ -13,7 +13,7 @@ const Summary = ({users}) => {
     user => user.location === 'Kiev' || user.location === 'kiev',
   ).length;
 
-  const sumThreeOldestAges = [...users] // spread needed for immutable
+  const sumThreeOldestAges = [...users]
     .sort((left, right) =>
       moment(left.dob, dateFormat).diff(moment(right.dob, dateFormat)),
     )
@@ -36,16 +36,16 @@ const Summary = ({users}) => {
     );
 
   return (
-    <div>
-      <div>Count of users from Kiev or kiev: {usersFromKievCount}</div>
-      <div>
-        Sum of ages of three oldest users from table: {sumThreeOldestAges}
-      </div>
-      <div>
-        Longest string of first name + last name pair:{' '}
+    <dl>
+      <dt>Count of users from Kiev or kiev</dt>
+      <dd>{usersFromKievCount}</dd>
+      <dt>Sum of ages of three oldest users from table</dt>
+      <dd>{sumThreeOldestAges}</dd>
+      <dt>Longest string of first name + last name pair</dt>
+      <dd>
         {maxNameLenUser.first_name} {maxNameLenUser.last_name}
-      </div>
-    </div>
+      </dd>
+    </dl>
   );
 };
 
