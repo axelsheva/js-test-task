@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import {connect} from 'react-redux';
 
 import {dateFormat} from '../const';
+import {deleteUserById, selectUser} from '../actions/users';
 
 const UsersList = ({users, onDeleteClick, onEditClick}) => {
   const renderUser = user => {
@@ -40,13 +42,21 @@ const UsersList = ({users, onDeleteClick, onEditClick}) => {
 };
 
 UsersList.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object),
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   onEditClick: PropTypes.func.isRequired,
 };
 
-UsersList.defaultProps = {
-  users: [],
+const mapStateToProps = state => ({
+  users: state.users,
+});
+
+const actions = {
+  onEditClick: selectUser,
+  onDeleteClick: deleteUserById,
 };
 
-export default UsersList;
+export default connect(
+  mapStateToProps,
+  actions,
+)(UsersList);

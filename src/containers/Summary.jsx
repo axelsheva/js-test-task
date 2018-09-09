@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import {connect} from 'react-redux';
 
 import {dateFormat} from '../const';
 
@@ -50,11 +51,11 @@ const Summary = ({users}) => {
 };
 
 Summary.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object),
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-Summary.defaultProps = {
-  users: [],
-};
+const mapStateToProps = state => ({
+  users: state.users,
+});
 
-export default Summary;
+export default connect(mapStateToProps)(Summary);
